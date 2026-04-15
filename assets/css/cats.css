@@ -26,9 +26,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Beräkning: 25% av bredden minus lite för gapet */
-    width: calc(25% - 20px); 
-    min-width: 200px; /* Så att de inte blir för små på mobilen */
+    /* Beräkning: 20% av bredden minus lite för gapet */
+    width: calc(20% - 10px); 
+    min-width: 180px; /* Så att de inte blir för små på mobilen */
 }
 
 .cat-price {
