@@ -16,7 +16,7 @@ function renderCart() {
   }
 
   cart.forEach((item, index) => {
-    const price = 500;
+    const price = 2000;
     total += price;
 
     const div = document.createElement("div");

@@ -87,3 +87,8 @@
     justify-content: center;
     margin-bottom: 30px;
 }
+
+body {
+  background: #f2f4f8;
+  font-family: system-ui, sans-serif;
+}
