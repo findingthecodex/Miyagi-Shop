@@ -39,6 +39,7 @@ function displayCats() {
       <img src="${img}" alt="cat">
       <p class="cat-name">${cat.name}</p>
       <span class="cat-country">${cat.origin}</span>
+      <button class="add-btn" type="button">Adopt 🐾</button>
     `;
 
     container.appendChild(card);
@@ -46,6 +47,22 @@ function displayCats() {
 
   pageNumber.textContent = page + 1;
 }
+
+container?.addEventListener("click", event => {
+  const button = event.target.closest(".add-btn");
+  if (!button) return;
+
+  const card = button.closest(".cat-item");
+  if (!card) return;
+
+  const name = card.querySelector(".cat-name")?.textContent;
+  const origin = card.querySelector(".cat-country")?.textContent;
+  const img = card.querySelector("img")?.src;
+
+  if (!name || !origin || !img) return;
+
+  addToCart({ name, origin, img });
+});
 
 // 🔹 Pagination
 nextBtn?.addEventListener("click", () => {
@@ -60,18 +77,22 @@ prevBtn?.addEventListener("click", () => {
 });
 
 // 🔍 SEARCH
-searchInput.addEventListener("input", () => {
-  const searchValue = searchInput.value.toLowerCase();
+if (searchInput && container) {
+  searchInput.addEventListener("input", () => {
+    const searchValue = searchInput.value.toLowerCase();
 
-  filteredCats = catsData.filter(cat =>
-    cat.name.toLowerCase().includes(searchValue)
-  );
+    filteredCats = catsData.filter(cat =>
+      cat.name.toLowerCase().includes(searchValue)
+    );
 
-  page = 0; // reset page när du söker
-  displayCats();
-});
+    page = 0; // reset page när du söker
+    displayCats();
+  });
+}
 
-loadCats();
+if (container) {
+  loadCats();
+}
 
 // 🔍 SEARCH FÖR MANUELLA KATTER (cafecats sidan)
 
@@ -93,4 +114,43 @@ if (searchInput && manualContainer) {
       }
     });
   });
+}
+
+if (manualContainer) {
+  const catItems = manualContainer.querySelectorAll(".cat-item");
+
+  // Ensure every manual cat card has an adopt button.
+  catItems.forEach(cat => {
+    if (cat.querySelector(".add-btn")) return;
+
+    const btn = document.createElement("button");
+    btn.className = "add-btn";
+    btn.type = "button";
+    btn.textContent = "Adopt 🐾";
+    cat.appendChild(btn);
+  });
+
+  manualContainer.addEventListener("click", event => {
+    const button = event.target.closest(".add-btn");
+    if (!button) return;
+
+    const cat = button.closest(".cat-item");
+    if (!cat) return;
+
+    const name = cat.querySelector(".cat-name")?.textContent;
+    const origin = cat.querySelector(".cat-country")?.textContent;
+    const img = cat.querySelector("img")?.src;
+
+    if (!name || !origin || !img) return;
+
+    addToCart({ name, origin, img });
+  });
+}
+
+function addToCart(cat) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push(cat);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
