@@ -10,7 +10,7 @@ function renderCart() {
   let total = 0;
 
   if (cart.length === 0) {
-    cartContainer.innerHTML = "<p>Your cart is empty 😿</p>";
+    cartContainer.innerHTML = "<p>Your basket is empty 😿</p>";
     totalPriceEl.textContent = 0;
     return;
   }

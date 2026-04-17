@@ -147,10 +147,27 @@ if (manualContainer) {
   });
 }
 
+// 🛒 CART (adopt sidan)
 function addToCart(cat) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   cart.push(cat);
 
   localStorage.setItem("cart", JSON.stringify(cart));
+
+  showToast(`${cat.name} added to adoption 🐾`);
+}
+
+// 🛒 RENDER CART
+function showToast(message) {
+  const toast = document.getElementById("toast");
+
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
 }
