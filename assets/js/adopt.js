@@ -51,7 +51,7 @@ if (cartContainer) {
     const btn = e.target.closest(".remove-btn");
     if (!btn) return;
 
-    const index = btn.dataset.index;
+    const index = Number(btn.dataset.index);
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -60,6 +60,11 @@ if (cartContainer) {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     renderCart();
+
+    // Uppdatera siffran i navbar direkt efter remove
+    if (typeof updateCartCount === "function") {
+      updateCartCount();
+    }
   });
 }
 
@@ -74,3 +79,4 @@ function addToCart(cat) {
 
 // 🚀 INIT
 renderCart();
+

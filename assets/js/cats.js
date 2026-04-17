@@ -156,6 +156,11 @@ function addToCart(cat) {
   localStorage.setItem("cart", JSON.stringify(cart));
 
   showToast(`${cat.name} added to adoption 🐾`);
+
+  // Uppdatera siffran i navbar direkt
+  if (typeof updateCartCount === "function") {
+    updateCartCount();
+  }
 }
 
 // 🛒 RENDER CART
