@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  <link rel="stylesheet" href="/assets/css/index.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+  <link rel="stylesheet" href="/assets/css/adopt.css">
+  <script src="/assets/js/index.js" defer></script>
+  <script src="/assets/js/navbar.js" defer></script>
+  <script src="/assets/js/checkout.js" defer></script>
+  <script src="/assets/js/footer.js" defer></script>
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <section class="cart-container">
+    <h1>Checkout</h1>
+    <p class="cart-subtitle">Review your adoption request</p>
+
+    <div id="checkoutItems"></div>
+
+    <div class="cart-summary">
+      <h2>Total: <span id="totalPrice">0</span> kr</h2>
+    </div>
+
+    <form id="checkoutForm">
+      <input type="text" id="name" placeholder="Your name" required>
+      <input type="email" id="email" placeholder="Your email" required>
+      <textarea id="message" placeholder="Optional message"></textarea>
+      <button type="submit">Confirm adoption</button>
+    </form>
+  </section>
+
+  <div id="footer"></div>
+</body>
+</html>

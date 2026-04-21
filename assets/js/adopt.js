@@ -80,3 +80,8 @@ function addToCart(cat) {
 // 🚀 INIT
 renderCart();
 
+const checkoutBtn = document.getElementById("checkoutBtn");
+
+checkoutBtn?.addEventListener("click", () => {
+  window.location.href = "/pages/checkout.html";
+});
